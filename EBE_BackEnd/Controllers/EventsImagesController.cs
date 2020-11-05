@@ -12,48 +12,48 @@ namespace EBE_BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AddressController : ControllerBase
+    public class EventsImagesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public AddressController(ApplicationDbContext context)
+        public EventsImagesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Address
+        // GET: api/EventsImages
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Address>>> GetAddresses()
+        public async Task<ActionResult<IEnumerable<EventsImages>>> GetEventsImages()
         {
-            return await _context.Address.ToListAsync();
+            return await _context.EventsImages.ToListAsync();
         }
 
-        // GET: api/Address/5
+        // GET: api/EventsImages/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Address>> GetAddress(int id)
+        public async Task<ActionResult<EventsImages>> GetEventsImages(int id)
         {
-            var address = await _context.Address.FindAsync(id);
+            var eventsImages = await _context.EventsImages.FindAsync(id);
 
-            if (address == null)
+            if (eventsImages == null)
             {
                 return NotFound();
             }
 
-            return address;
+            return eventsImages;
         }
 
-        // PUT: api/Address/5
+        // PUT: api/EventsImages/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAddress(int id, Address address)
+        public async Task<IActionResult> PutEventsImages(int id, EventsImages eventsImages)
         {
-            if (id != address.Id)
+            if (id != eventsImages.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(address).State = EntityState.Modified;
+            _context.Entry(eventsImages).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace EBE_BackEnd.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AddressExists(id))
+                if (!EventsImagesExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace EBE_BackEnd.Controllers
             return NoContent();
         }
 
-        // POST: api/Address
+        // POST: api/EventsImages
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Address>> PostAddress(Address address)
+        public async Task<ActionResult<EventsImages>> PostEventsImages(EventsImages eventsImages)
         {
-            _context.Address.Add(address);
+            _context.EventsImages.Add(eventsImages);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetAddress), new { id = address.Id }, address);
+            return CreatedAtAction("GetEventsImages", new { id = eventsImages.Id }, eventsImages);
         }
 
-        // DELETE: api/Address/5
+        // DELETE: api/EventsImages/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Address>> DeleteAddress(int id)
+        public async Task<ActionResult<EventsImages>> DeleteEventsImages(int id)
         {
-            var address = await _context.Address.FindAsync(id);
-            if (address == null)
+            var eventsImages = await _context.EventsImages.FindAsync(id);
+            if (eventsImages == null)
             {
                 return NotFound();
             }
 
-            _context.Address.Remove(address);
+            _context.EventsImages.Remove(eventsImages);
             await _context.SaveChangesAsync();
 
-            return address;
+            return eventsImages;
         }
 
-        private bool AddressExists(int id)
+        private bool EventsImagesExists(int id)
         {
-            return _context.Address.Any(e => e.Id == id);
+            return _context.EventsImages.Any(e => e.Id == id);
         }
     }
 }

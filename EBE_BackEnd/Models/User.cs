@@ -11,7 +11,7 @@ namespace EBE_BackEnd.Models
     {
 
         private int id, institution;
-        private int addressNumber, addressId;
+        private int addressNumber, street_id;
         private DateTime birthDate;
         private bool sex;
 
@@ -32,15 +32,24 @@ namespace EBE_BackEnd.Models
         public int Id { get => id; set => id = value; }
         public int Institution { get => institution; set => institution = value; }
         public int AddressNumber { get => addressNumber; set => addressNumber = value; }
-        public int AddressId { get => addressId; set => addressId = value; }
+        public int Street_Id { get => street_id; set => street_id = value; }
         public DateTime BirthDate { get => birthDate; set => birthDate = value; }
         public bool Sex { get => sex; set => sex = value; }
         public string AccessLevel { get => accessLevel; set => accessLevel = value; }
+        [Required]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$", ErrorMessage = "Only character are not allowed.")]
         public string Name { get => name; set => name = value; }
+        [Required]
+        [RegularExpression(@"^[0-9]*$", ErrorMessage = "Only Numbers.")]
         public string Cpf { get => cpf; set => cpf = value; }
+        [Required]
+        [RegularExpression(@"^[0-9]*$", ErrorMessage = "Only Numbers.")]
         public string Rg { get => rg; set => rg = value; }
         public string Role { get => role; set => role = value; }
+        [Required]
+        [EmailAddress]
         public string Email { get => email; set => email = value; }
+        [Required]
         public string Password { get => password; set => password = value; }
         public string Description { get => description; set => description = value; }
         public string MedicalCares { get => medicalCares; set => medicalCares = value; }
@@ -56,7 +65,7 @@ namespace EBE_BackEnd.Models
             this.id = id;
             this.institution = institution;
             this.addressNumber = addressNumber;
-            this.addressId = addressId;
+            this.street_id = addressId;
             this.birthDate = birthDate;
             this.sex = sex;
             this.accessLevel = accessLevel;

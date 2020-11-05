@@ -17,9 +17,20 @@ namespace EBE_BackEnd.Data
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
         }
-        public DbSet<Address> Address{ get; set; }
-        public DbSet<User> User { get; set; }
-
-        
+        public DbSet<User> Users { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<State> States { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<District> Districts { get; set; }
+        public DbSet<Street> Streets { get; set; }
+        public DbSet<Instituiton> Instituitons { get; set; }
+        public DbSet<Events> Events { get; set; }
+        public DbSet<SubEvents> SubEvents { get; set; }
+        public DbSet<Users_has_Events> Users_has_Events { get; set; }
+        public DbSet<SubEvents_has_Users> SubEvents_has_Users { get; set; }
+        public DbSet<Manager> Managers { get; set; }
+        public DbSet<EventsImages> EventsImages { get; set; }
+        public DbSet<Palestrantes> Palestrantes { get; set; }
+        public DbSet<EBE_BackEnd.Models.Instituitions_has_Users> Instituitions_has_Users { get; set; }
     }
 }
