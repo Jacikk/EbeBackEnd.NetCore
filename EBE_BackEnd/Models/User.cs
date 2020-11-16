@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EBE_BackEnd.Models
 {
@@ -27,13 +28,18 @@ namespace EBE_BackEnd.Models
             description,
             medicalCares,
             avatar,
-            addressReference;
+            addressReference,
+            telefone1,
+            telefone2;
 
         public int Id { get => id; set => id = value; }
         public int Institution { get => institution; set => institution = value; }
         public int AddressNumber { get => addressNumber; set => addressNumber = value; }
         public int Street_Id { get => street_id; set => street_id = value; }
+        [Required]
+        [DataType(DataType.Date)]
         public DateTime BirthDate { get => birthDate; set => birthDate = value; }
+        [Required]
         public bool Sex { get => sex; set => sex = value; }
         public string AccessLevel { get => accessLevel; set => accessLevel = value; }
         [Required]
@@ -52,15 +58,21 @@ namespace EBE_BackEnd.Models
         [Required]
         public string Password { get => password; set => password = value; }
         public string Description { get => description; set => description = value; }
+        [Required]
         public string MedicalCares { get => medicalCares; set => medicalCares = value; }
+        [Required]
         public string Avatar { get => avatar; set => avatar = value; }
         public string AddressReference { get => addressReference; set => addressReference = value; }
+        [RegularExpression(@"^[0-9]*$", ErrorMessage = "Only Numbers.")]
+        public string Telefone1 { get => telefone1; set => telefone1 = value; }
+        [RegularExpression(@"^[0-9]*$", ErrorMessage = "Only Numbers.")]
+        public string Telefone2 { get => telefone2; set => telefone2 = value; }
 
         public User()
         {
         }
 
-        public User(int id, int institution, int addressNumber, int addressId, DateTime birthDate, bool sex, string accessLevel, string name, string cpf, string rg, string role, string email, string password, string description, string medicalCares, string avatar, string addressReference)
+        public User(int id, int institution, int addressNumber, int addressId, DateTime birthDate, bool sex, string accessLevel, string name, string cpf, string rg, string role, string email, string password, string description, string medicalCares, string avatar, string addressReference, string telefone1, string telefone2)
         {
             this.id = id;
             this.institution = institution;
@@ -79,6 +91,8 @@ namespace EBE_BackEnd.Models
             this.medicalCares = medicalCares;
             this.avatar = avatar;
             this.addressReference = addressReference;
+            this.telefone1 = telefone1;
+            this.telefone2 = telefone2;
         }
 
         ~User()
