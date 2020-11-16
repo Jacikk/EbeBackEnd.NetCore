@@ -31,6 +31,8 @@ namespace EBE_BackEnd.Data
         public DbSet<Manager> Managers { get; set; }
         public DbSet<EventsImages> EventsImages { get; set; }
         public DbSet<Palestrantes> Palestrantes { get; set; }
-        public DbSet<EBE_BackEnd.Models.Instituitions_has_Users> Instituitions_has_Users { get; set; }
+        public DbSet<Instituitions_has_Users> Instituitions_has_Users { get; set; }
+
+        public DbSet<Login> Logins { get; set; }
     }
 }

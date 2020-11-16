@@ -16,15 +16,12 @@ namespace EBE_BackEnd.Models
         private DateTime birthDate;
         private bool sex;
 
-        private string accessLevel;
 
         private string
             name,
             cpf,
             rg,
             role,
-            email,
-            password,
             description,
             medicalCares,
             avatar,
@@ -41,7 +38,6 @@ namespace EBE_BackEnd.Models
         public DateTime BirthDate { get => birthDate; set => birthDate = value; }
         [Required]
         public bool Sex { get => sex; set => sex = value; }
-        public string AccessLevel { get => accessLevel; set => accessLevel = value; }
         [Required]
         [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$", ErrorMessage = "Only character are not allowed.")]
         public string Name { get => name; set => name = value; }
@@ -52,11 +48,6 @@ namespace EBE_BackEnd.Models
         [RegularExpression(@"^[0-9]*$", ErrorMessage = "Only Numbers.")]
         public string Rg { get => rg; set => rg = value; }
         public string Role { get => role; set => role = value; }
-        [Required]
-        [EmailAddress]
-        public string Email { get => email; set => email = value; }
-        [Required]
-        public string Password { get => password; set => password = value; }
         public string Description { get => description; set => description = value; }
         [Required]
         public string MedicalCares { get => medicalCares; set => medicalCares = value; }
@@ -72,21 +63,18 @@ namespace EBE_BackEnd.Models
         {
         }
 
-        public User(int id, int institution, int addressNumber, int addressId, DateTime birthDate, bool sex, string accessLevel, string name, string cpf, string rg, string role, string email, string password, string description, string medicalCares, string avatar, string addressReference, string telefone1, string telefone2)
+        public User(int id, int institution, int addressNumber, int street_id, DateTime birthDate, bool sex, string name, string cpf, string rg, string role, string description, string medicalCares, string avatar, string addressReference, string telefone1, string telefone2)
         {
             this.id = id;
             this.institution = institution;
             this.addressNumber = addressNumber;
-            this.street_id = addressId;
+            this.street_id = street_id;
             this.birthDate = birthDate;
             this.sex = sex;
-            this.accessLevel = accessLevel;
             this.name = name;
             this.cpf = cpf;
             this.rg = rg;
             this.role = role;
-            this.email = email;
-            this.password = password;
             this.description = description;
             this.medicalCares = medicalCares;
             this.avatar = avatar;
