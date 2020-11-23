@@ -1,12 +1,14 @@
 ﻿import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import './styles.css'
-import axios from 'axios';
+
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 
 import Logo from '../../Assets/Logo/logoebevetor1.png'
 import Api from '../../services/api'
 
-import { login } from "../../services/auth";
+import { login, isAuthenticated } from "../../services/auth";
 
 
 class SignIn extends Component {
@@ -24,10 +26,9 @@ class SignIn extends Component {
         } else {
             try {
                 const response = await Api.post("/auth/login", { email, password });
-                login(response.data.token);
-                console.log(response.data.token);
-                this.props.history.push("/");
-                console.log(response.data.token);
+                login(response.data);
+                this.props.history.push('/');
+
             } catch (err) {
                 this.setState({
                     error:
@@ -39,9 +40,23 @@ class SignIn extends Component {
 
 
     render() {
-        return (
+
+        if (isAuthenticated()) return (
+            <section>
+                <Header />
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <p>Você já esta logado!
+                <Link to={'/'}> Clique aqui para voltar</Link></p>
+                </div>
+                <Footer />
+            </section>
+
+
+        )
+        else return (<section>
+            <Header />
             <div id='SignUpContainer'>
-                <form onSubmit={this.handleSignUp}>
+                <form onSubmit={this.handleSignIn}>
                     <img src={Logo} alt="Even Better Events logo" />
                     {this.state.error && <p>{this.state.error}</p>}
                     <input
@@ -54,13 +69,15 @@ class SignIn extends Component {
                         placeholder="Senha"
                         onChange={e => this.setState({ password: e.target.value })}
                     />
-                    <button type="submit">Login</button>
+                    <button type="submit" id='loginBtn'>Login</button>
                     <hr />
                     <Link to="/" id="SignUpLogin">Esqueceu a senha?</Link>
                     <hr />
                     <Link to="/SignUp" id="SignUpLogin">Não é registrado ainda? Registre-se!</Link>
                 </form>
             </div>
+            <Footer />
+        </section>
         )
     }
 }

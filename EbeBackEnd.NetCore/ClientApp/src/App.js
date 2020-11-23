@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Layout from './components/Layoult';
 import Routes from './routes.js'
 
 export default class App extends Component {
@@ -7,9 +6,7 @@ export default class App extends Component {
 
   render () {
     return (
-      <Layout>
         <Routes />
-      </Layout>
     );
   }
 }

@@ -4,11 +4,20 @@ import './styles.css';
 import Button from '../Button';
 import EbeLogo from '../../Assets/Logo/logoebevetor1.png'
 
-export default function Header() {
+import { isAuthenticated, logout } from '../../services/auth.js'
+import { Link } from 'react-router-dom';
 
-    
-    return <header>
-        <img src={EbeLogo} alt="Logo" className="logo"></img>
+export default function Header() { 
+    if (isAuthenticated()) {
+        return <header>
+            <Link to='/' className='LogoRedirect'><img src={EbeLogo} alt="Logo" className="logo"></img></Link>
+            <div className='headerBtns'>
+                <Button link='/Perfil' btnName='Perfil' />
+                <Button link='/' onClick={logout} btnName='Logout' />
+            </div>
+        </header>
+    } else return <header>
+        <Link to='/' className='LogoRedirect'><img src={EbeLogo} alt="Logo" className="logo"></img></Link>
         <div className='headerBtns'>
             <Button link='/SignIn' btnName='Login' />
             <Button link='/SignUp' btnName='Register' />

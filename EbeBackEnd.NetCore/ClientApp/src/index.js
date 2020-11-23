@@ -11,7 +11,9 @@ const rootElement = document.getElementById('root');
 
 ReactDOM.render(
   <BrowserRouter basename={baseUrl}>
+    <Switch>
       <App />
+    </Switch>
   </BrowserRouter>,
   rootElement);
 

@@ -1,6 +1,9 @@
 import React from 'react'
 import './styles.css'
 
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
+
 import Api from '../../services/api'
 
 export default class PerfilPage extends React.Component {
@@ -53,32 +56,35 @@ export default class PerfilPage extends React.Component {
 
         const user = this.state.user;
 
-        return <body>
-            <div className='root'>
-                <div className='flexRow'>
-                    <div className='Container' id='UserName'>{user.name}</div>
-                    <div className='Container' id='PageName'>Meu Perfil</div>
+        return <section>
+            <Header />
+            <body>
+                <div className='root'>
+                    <div className='flexRow'>
+                        <div className='Container' id='UserName'>{user.name}</div>
+                        <div className='Container' id='PageName'>Meu Perfil</div>
+                    </div>
+                    <div className='flexRow'>
+                        <div className='Container' id='PerfilImgContainer'><img src={user.avatar} alt='Avatar do Usuario' id='ImgPerfil'></img></div>
+                        <div className='Container' id='UserDescription'>{user.description}</div>
+                    </div>
+                    <div className='flexRow'>
+                        <div className='Container' id='Role'>{user.role}</div>
+                        <div className='Container' id='Institution'>{user.institution}</div>
+                    </div>
+                    <div className='flexRow'>
+                        <div className='Container' id='telefone'>Tel: {user.telefone1}</div>
+                        <div className='Container' id='telefone'>Tel: {user.telefone2}</div>
+                        <div className='Container' id='Email'>E-mail: {user.email}</div>
+                    </div>
+                    <div className='flexRow'>
+                        <div className='Container' id='BirthDate'>Data de nascimento: {user.birthDate}</div>
+                        <div className='Container' id='medicalCares'>Cuidados médicos: {user.medicalCares}</div>
+                    </div>
                 </div>
-                <div className='flexRow'>
-                    <div className='Container' id='PerfilImgContainer'><img src={user.avatar} alt='Avatar do Usuario' id='ImgPerfil'></img></div>
-                    <div className='Container' id='UserDescription'>{user.description}</div>
-                </div>
-                <div className='flexRow'>
-                    <div className='Container' id='Role'>{user.role}</div>
-                    <div className='Container' id='Institution'>{user.institution}</div>
-                </div>
-                <div className='flexRow'>
-                    <div className='Container' id='telefone'>Tel: {user.telefone1}</div>
-                    <div className='Container' id='telefone'>Tel: {user.telefone2}</div>
-                    <div className='Container' id='Email'>E-mail: {user.email}</div>
-                </div>
-                <div className='flexRow'>
-                    <div className='Container' id='BirthDate'>Data de nascimento: {user.birthDate}</div>
-                    <div className='Container' id='medicalCares'>Cuidados médicos: {user.medicalCares}</div>
-                </div>
-                
+            </body>
+            <Footer />
+        </section>
 
-            </div>
-        </body>
     }
 }
